@@ -28,7 +28,7 @@ public class Artist {
 
     public static void BeginSession(){
 
-        Display.setTitle("Jake's Physics");
+        Display.setTitle("Jake's Guided User Interface");
         try {
             Display.setDisplayMode(new DisplayMode(WIDTH, HEIGHT));
             Display.create();

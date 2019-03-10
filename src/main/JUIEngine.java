@@ -19,22 +19,23 @@ public class JUIEngine {
     public JUIEngine(){
         BeginSession();
 
-
+        Background background = new Background(1365,1025,"background");
         HashSet<Entity> entitySet = new HashSet<>();
-        entitySet.add(new Box(0,0,"box"));
-        entitySet.add(new Box(0,64,"box"));
-        entitySet.add(new Box(0,128,"box"));
+        entitySet.add(new Box(0,0,64, 64,"box"));
+        entitySet.add(new Box(0,64,64, 64,"box"));
+        entitySet.add(new Box(0,128,64, 64,"box"));
 
-        entitySet.add(new Box(128,0,"box"));
-        entitySet.add(new Box(128,64,"box"));
-        entitySet.add(new Box(128,128,"box"));
+        entitySet.add(new Box(128,0,64, 64,"box"));
+        entitySet.add(new Box(128,64,64, 64,"box"));
+        entitySet.add(new Box(128,128,64, 64,"box"));
 
-        entitySet.add(new Box(256,0,"box"));
-        entitySet.add(new Box(256,64,"box"));
-        entitySet.add(new Box(256,128,"box"));
+        entitySet.add(new Box(256,0,64, 64,"box"));
+        entitySet.add(new Box(256,64,64, 64,"box"));
+        entitySet.add(new Box(256,128,64, 64,"box"));
 
         while (!Display.isCloseRequested()) {
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+            background.Draw();
             HashSet<Entity> remove = new HashSet<>();
             for(Entity box : entitySet){
                 box.CheckInputs();

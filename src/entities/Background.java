@@ -12,7 +12,7 @@ import java.io.InputStream;
 import static helpers.Artist.DrawQuadTex;
 import static helpers.Artist.LoadTexture;
 
-public class Box implements Entity{
+public class Background implements Entity{
 
     private float x;
     private float y;
@@ -25,10 +25,10 @@ public class Box implements Entity{
 
     private boolean remove;
 
-    public Box(float startX, float startY, int width, int height, String fileName){
+    public Background(int width, int height, String fileName){
 
-        this.x = startX;
-        this.y = startY;
+        x = 0;
+        y = 0;
         this.width = width;
         this.height = height;
         this.texture = LoadTexture(fileName);
@@ -42,15 +42,8 @@ public class Box implements Entity{
         DrawQuadTex(texture, x, y, width, height);
     }
 
-    public void CheckInputs(){
-        if(Mouse.getX() < x+width && Mouse.getX() > x && 960-Mouse.getY() > y && 960-Mouse.getY() < y + height){
-            if(Mouse.isButtonDown(0)){
-                texture = LoadTexture("box_select");
-            }
-            else{
-                texture = LoadTexture("box_hover");
-            }
-        }else texture = LoadTexture("box");
+    public void CheckInputs() {
+
     }
 
 
