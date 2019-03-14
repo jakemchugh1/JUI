@@ -1,5 +1,6 @@
 package entities;
 
+import Actions.Action;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.util.vector.Vector2f;
 import org.newdawn.slick.opengl.Texture;
@@ -22,16 +23,19 @@ public class Box implements Entity{
 
     private Texture texture;
 
+    private Action action;
+
 
     private boolean remove;
 
-    public Box(float startX, float startY, int width, int height, String fileName){
+    public Box(float startX, float startY, int width, int height, String fileName, Action action){
 
         this.x = startX;
         this.y = startY;
         this.width = width;
         this.height = height;
         this.texture = LoadTexture(fileName);
+        this.action = action;
 
 
         remove = false;
@@ -39,6 +43,7 @@ public class Box implements Entity{
     }
 
     public void Draw() {
+        action.Check();
         DrawQuadTex(texture, x, y, width, height);
     }
 
@@ -46,11 +51,15 @@ public class Box implements Entity{
         if(Mouse.getX() < x+width && Mouse.getX() > x && 960-Mouse.getY() > y && 960-Mouse.getY() < y + height){
             if(Mouse.isButtonDown(0)){
                 texture = LoadTexture("box_select");
+                action.Select(true);
             }
             else{
                 texture = LoadTexture("box_hover");
             }
-        }else texture = LoadTexture("box");
+        }else {
+            texture = LoadTexture("box");
+            action.Select(false);
+        }
     }
 
 
